@@ -9,7 +9,8 @@ package model.bean;
  * @author work-
  */
 public class Pessoa {
-    protected static String name;
+    protected String name;
+    protected int id;
     protected String birthday;
     protected String cpf;
     protected String foto;
@@ -19,11 +20,19 @@ public class Pessoa {
     }
 
     public void setName(String name) {
-        Pessoa.name = name;
+        this.name=name;
     }
 
     public String getBirthday() {
         return birthday;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setBirthday(String birthday) {

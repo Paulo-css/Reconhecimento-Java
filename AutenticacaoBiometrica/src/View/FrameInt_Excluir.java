@@ -45,8 +45,8 @@ public class FrameInt_Excluir extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jComboBox_Cargo = new javax.swing.JComboBox<>();
-        JText_field_CPF = new javax.swing.JFormattedTextField();
         jTextField_Nasc = new javax.swing.JFormattedTextField();
+        jText_id = new javax.swing.JTextField();
 
         jButton4.setText("jButton4");
 
@@ -75,7 +75,7 @@ public class FrameInt_Excluir extends javax.swing.JInternalFrame {
                 jButton_SelecionarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton_Selecionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(516, 198, -1, -1));
+        getContentPane().add(jButton_Selecionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 200, -1, -1));
 
         jButton_Confirmar.setText("CONFIRMAR");
         jButton_Confirmar.addActionListener(new java.awt.event.ActionListener() {
@@ -101,18 +101,11 @@ public class FrameInt_Excluir extends javax.swing.JInternalFrame {
         jLabel1.setText("DATA DE NASCIMENTO:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 374, -1, -1));
 
-        jLabel2.setText("CPF:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, -1, -1));
+        jLabel2.setText("ID Funcionario:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, -1, -1));
 
         jComboBox_Cargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FUNCIONÁRIO", "GERENTE", "DIRETOR" }));
         getContentPane().add(jComboBox_Cargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(604, 371, 212, -1));
-
-        try {
-            JText_field_CPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        getContentPane().add(JText_field_CPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, 230, -1));
 
         try {
             jTextField_Nasc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -125,6 +118,7 @@ public class FrameInt_Excluir extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jTextField_Nasc, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 370, 260, -1));
+        getContentPane().add(jText_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 220, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -135,7 +129,7 @@ public class FrameInt_Excluir extends javax.swing.JInternalFrame {
 
     private void jButton_ConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ConfirmarActionPerformed
         FuncionarioDAO funcionario = new FuncionarioDAO();
-        funcionario.excluir(JText_field_CPF.getText());
+        funcionario.excluir(Integer.parseInt(jText_id.getText()));
         jTextField_Nome.setText("");
         jTextField_Nasc.setText("");
         jComboBox_Cargo.setToolTipText("");
@@ -144,13 +138,13 @@ public class FrameInt_Excluir extends javax.swing.JInternalFrame {
         Image imgRedimensionada = img.getScaledInstance(160, 160, Image.SCALE_SMOOTH);
         ImageIcon usu_red = new ImageIcon (imgRedimensionada);
         jLabel_foto.setIcon(usu_red);
-        JText_field_CPF.setText("");
+        jText_id.setText("");
     }//GEN-LAST:event_jButton_ConfirmarActionPerformed
 
     private void jButton_SelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SelecionarActionPerformed
         FuncionarioDAO dao = new FuncionarioDAO();
         Funcionario fm = new Funcionario();
-        fm = dao.read(JText_field_CPF.getText());
+        fm = dao.read(Integer.parseInt(jText_id.getText()));
         jTextField_Nome.setText(fm.getName());
         jTextField_Nasc.setText(fm.getBirthday());
         jComboBox_Cargo.setToolTipText(fm.getCargo());
@@ -167,7 +161,6 @@ public class FrameInt_Excluir extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JFormattedTextField JText_field_CPF;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton_Cancelar;
     private javax.swing.JButton jButton_Confirmar;
@@ -183,5 +176,6 @@ public class FrameInt_Excluir extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel_nome;
     private javax.swing.JFormattedTextField jTextField_Nasc;
     private javax.swing.JTextField jTextField_Nome;
+    private javax.swing.JTextField jText_id;
     // End of variables declaration//GEN-END:variables
 }

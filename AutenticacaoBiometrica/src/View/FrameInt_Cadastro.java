@@ -62,6 +62,8 @@ public class FrameInt_Cadastro extends javax.swing.JInternalFrame {
         jTextField_foto = new javax.swing.JTextField();
         jTextField_cpf = new javax.swing.JFormattedTextField();
         jTextField_birthday = new javax.swing.JFormattedTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jText_id = new javax.swing.JTextField();
 
         jButton4.setText("jButton4");
 
@@ -76,7 +78,7 @@ public class FrameInt_Cadastro extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel_nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
 
         jLabel_cargo.setText("CARGO:");
-        getContentPane().add(jLabel_cargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 290, -1, -1));
+        getContentPane().add(jLabel_cargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 290, -1, -1));
 
         jLabel_Biometria.setText("BIOMETRIA:");
         getContentPane().add(jLabel_Biometria, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, -1, -1));
@@ -119,8 +121,8 @@ public class FrameInt_Cadastro extends javax.swing.JInternalFrame {
         jLabel2.setText("CPF:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 250, -1, -1));
 
-        jComboBox_Cargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FUNCIONÁRIO", "GERENTE", "DIRETOR" }));
-        getContentPane().add(jComboBox_Cargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 290, 212, -1));
+        jComboBox_Cargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECIONE", "FUNCIONÁRIO", "GERENTE", "DIRETOR" }));
+        getContentPane().add(jComboBox_Cargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 290, 212, -1));
         getContentPane().add(jTextField_foto, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 600, 225, -1));
 
         try {
@@ -135,7 +137,11 @@ public class FrameInt_Cadastro extends javax.swing.JInternalFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        getContentPane().add(jTextField_birthday, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, 280, -1));
+        getContentPane().add(jTextField_birthday, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, 150, -1));
+
+        jLabel4.setText("ID:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 290, -1, -1));
+        getContentPane().add(jText_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 290, 120, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -150,14 +156,16 @@ public class FrameInt_Cadastro extends javax.swing.JInternalFrame {
         Funcionario f = new Funcionario();
 
         f.setName(jTextField_Nome.getText());
+        f.setId(Integer.parseInt(jText_id.getText()));
         f.setBirthday(jTextField_birthday.getText());
         f.setCpf(jTextField_cpf.getText());
         f.setFoto(jTextField_foto.getText());
-        f.setCargo(jComboBox_Cargo.getToolTipText());
+        f.setCargo(jComboBox_Cargo.getSelectedItem().toString());
         dao.create(f);
         
         jTextField_Nome.setText("");
         jTextField_birthday.setText("");
+        jText_id.setText("");
         jTextField_cpf.setText("");
         jTextField_foto.setText("");
         jComboBox_Cargo.setToolTipText("");
@@ -166,7 +174,7 @@ public class FrameInt_Cadastro extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton_ConfirmarActionPerformed
 
     private void jButton_SelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SelecionarActionPerformed
-        String fun = jTextField_cpf.getText();
+        int fun = Integer.parseInt(jText_id.getText());
         Frame framecapturado = null;
         CapturaFoto cm = new CapturaFoto();
            
@@ -193,6 +201,7 @@ public class FrameInt_Cadastro extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel_Biometria;
     private javax.swing.JLabel jLabel_cargo;
     private javax.swing.JLabel jLabel_foto;
@@ -202,5 +211,6 @@ public class FrameInt_Cadastro extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField jTextField_birthday;
     private javax.swing.JFormattedTextField jTextField_cpf;
     private javax.swing.JTextField jTextField_foto;
+    private javax.swing.JTextField jText_id;
     // End of variables declaration//GEN-END:variables
 }

@@ -33,7 +33,7 @@ public class CapturaFoto {
         
     }
     
-    public void CameraInicia(String cpf) throws FrameGrabber.Exception, InterruptedException {
+    public void CameraInicia(int id) throws FrameGrabber.Exception, InterruptedException {
         OpenCVFrameConverter.ToMat convertMat = new OpenCVFrameConverter.ToMat();
         OpenCVFrameGrabber camera = new OpenCVFrameGrabber(0);
         camera.start();
@@ -57,7 +57,7 @@ public class CapturaFoto {
                 Mat faceCapturada = new Mat(imagemCinza,dadosFace);
                 resize(faceCapturada,faceCapturada,new Size(160,160));
                 if(amostra <= amostrasfoto){
-                            imwrite("src\\fotos\\pessoa."+cpf+"."+amostra+".jpg",faceCapturada);
+                            imwrite("src\\fotos\\pessoa."+id+"."+amostra+".jpg",faceCapturada);
                             System.out.println("Foto "+amostra+" capturada\n");
                             amostra++;
                         }

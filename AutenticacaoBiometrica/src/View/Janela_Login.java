@@ -7,6 +7,10 @@ package View;
 import Reconhecimento.Reconhecer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import model.bean.Funcionario;
+import model.dao.FuncionarioDAO;
 import org.bytedeco.javacv.FrameGrabber;
 
 /**
@@ -31,42 +35,42 @@ public class Janela_Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jDesktopPane = new javax.swing.JDesktopPane();
         jLabel_Foto = new javax.swing.JLabel();
-        Jtext_field2 = new javax.swing.JTextField();
-        Jtext_field1 = new javax.swing.JTextField();
+        Jtext_cargo = new javax.swing.JTextField();
         JLabel_nome = new javax.swing.JLabel();
-        jLabel_cargo = new javax.swing.JLabel();
         jButton_Entrar = new javax.swing.JButton();
+        Jtext_nome = new javax.swing.JTextField();
+        jLabel_cargo = new javax.swing.JLabel();
         JLabel_Titulo = new javax.swing.JLabel();
         jLabel_Logo = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Secretária meio ambiente");
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
         jLabel_Foto.setBackground(new java.awt.Color(204, 204, 204));
         jLabel_Foto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_Foto.setText("Foto da Pessoa");
 
-        Jtext_field1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Jtext_field1ActionPerformed(evt);
-            }
-        });
-
         JLabel_nome.setText("Nome:");
 
-        jLabel_cargo.setText("Cargo:");
-
-        jButton_Entrar.setText("Entrar");
+        jButton_Entrar.setText("Procurar");
         jButton_Entrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_EntrarActionPerformed(evt);
             }
         });
+
+        Jtext_nome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Jtext_nomeActionPerformed(evt);
+            }
+        });
+
+        jLabel_cargo.setText("Cargo:");
 
         JLabel_Titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLabel_Titulo.setText("Secretária do Meio Ambiente");
@@ -74,88 +78,160 @@ public class Janela_Login extends javax.swing.JFrame {
         jLabel_Logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_Logo.setText("Logo Meio Ambiente");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton_Entrar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(jLabel_Foto, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JLabel_nome)
-                            .addComponent(jLabel_cargo))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jButton1.setText("Entrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Limpar ");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jDesktopPane.setLayer(jLabel_Foto, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane.setLayer(Jtext_cargo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane.setLayer(JLabel_nome, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane.setLayer(jButton_Entrar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane.setLayer(Jtext_nome, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane.setLayer(jLabel_cargo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane.setLayer(JLabel_Titulo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane.setLayer(jLabel_Logo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jDesktopPaneLayout = new javax.swing.GroupLayout(jDesktopPane);
+        jDesktopPane.setLayout(jDesktopPaneLayout);
+        jDesktopPaneLayout.setHorizontalGroup(
+            jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPaneLayout.createSequentialGroup()
+                .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDesktopPaneLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(jLabel_Foto, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDesktopPaneLayout.createSequentialGroup()
+                        .addGap(81, 81, 81)
+                        .addComponent(jButton_Entrar)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPaneLayout.createSequentialGroup()
+                .addGap(0, 435, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(65, 65, 65)
+                .addComponent(jButton1)
+                .addGap(156, 156, 156))
+            .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jDesktopPaneLayout.createSequentialGroup()
+                    .addContainerGap(249, Short.MAX_VALUE)
+                    .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(JLabel_nome)
+                        .addComponent(jLabel_cargo))
+                    .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel_Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(Jtext_field2, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
-                                .addComponent(Jtext_field1)))))
-                .addGap(166, 166, 166))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(JLabel_Titulo)
-                .addGap(346, 346, 346))
+                            .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(Jtext_cargo, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
+                                .addComponent(Jtext_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPaneLayout.createSequentialGroup()
+                            .addComponent(JLabel_Titulo)
+                            .addGap(180, 180, 180)))
+                    .addGap(157, 157, 157)))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(JLabel_Titulo)
-                .addGap(30, 30, 30)
-                .addComponent(jLabel_Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel_Foto, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(JLabel_nome)
-                            .addComponent(Jtext_field1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(47, 47, 47)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Jtext_field2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel_cargo))
-                        .addGap(43, 43, 43)))
+        jDesktopPaneLayout.setVerticalGroup(
+            jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPaneLayout.createSequentialGroup()
+                .addContainerGap(248, Short.MAX_VALUE)
+                .addComponent(jLabel_Foto, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jButton_Entrar)
-                .addContainerGap(183, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addGap(91, 91, 91))
+            .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jDesktopPaneLayout.createSequentialGroup()
+                    .addGap(56, 56, 56)
+                    .addComponent(JLabel_Titulo)
+                    .addGap(30, 30, 30)
+                    .addComponent(jLabel_Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(73, 73, 73)
+                    .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(JLabel_nome)
+                        .addComponent(Jtext_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(47, 47, 47)
+                    .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Jtext_cargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel_cargo))
+                    .addContainerGap(181, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jDesktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jDesktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Jtext_field1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jtext_field1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Jtext_field1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        FuncionarioDAO fun = new FuncionarioDAO();
+        Frame_funcionario janela = new Frame_funcionario();
+        Frame_Gerente gen = new Frame_Gerente();
+        Frame_Diretor dir = new Frame_Diretor();
+        if(Jtext_nome.getText().equals("")||Jtext_cargo.getText().equals("")){
+            JOptionPane.showConfirmDialog(null,"Conteúdo Vazio","ERRO !!!",2);
+        }else if(Jtext_nome.getText().equals("Admin")&&Jtext_cargo.getText().equals("Admin")){
+            new Janela_Admin().setVisible(true);
+        }else if(Jtext_cargo.getText().equals("FUNCIONÁRIO")){
+            jDesktopPane.add(janela);
+            janela.setVisible(true);
+        }else if (Jtext_cargo.getText().equals("GERENTE")){
+            jDesktopPane.add(gen);
+            gen.setVisible(true);
+        }else if (Jtext_cargo.getText().equals("DIRETOR")){
+            jDesktopPane.add(dir);
+            dir.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton_EntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EntrarActionPerformed
-        if(Jtext_field1.getText().equals("Admin")&&Jtext_field2.getText().equals("Admin")){
-            new Janela_Admin().setVisible(true);    
-        }else{
+        FuncionarioDAO fun = new FuncionarioDAO();
+        Funcionario funcio = new Funcionario();
+        
+        int id;
         Reconhecer rc = new Reconhecer();
-
-        System.out.println(rc.Reconhecerfun());
+        id = Integer.parseInt(rc.Reconhecerfun());
+        funcio = fun.read(id);
+        String img = Integer.toString(id);
+        System.out.println(img);
+        String cam = "src\\fotos\\pessoa."+img+".1.jpg";
+        ImageIcon imagem = new ImageIcon(cam);
+        jLabel_Foto.setIcon(imagem);
+        Jtext_nome.setText(funcio.getName());
+        Jtext_cargo.setText(funcio.getCargo());
 
     }//GEN-LAST:event_jButton_EntrarActionPerformed
-  }
+
+    private void Jtext_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jtext_nomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Jtext_nomeActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        jLabel_Foto.setIcon(null);
+        Jtext_nome.setText("");
+        Jtext_cargo.setText("");
+    }//GEN-LAST:event_jButton2ActionPerformed
+  
     /**
      * @param args the command line arguments
      */
@@ -194,12 +270,14 @@ public class Janela_Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JLabel_Titulo;
     private javax.swing.JLabel JLabel_nome;
-    private javax.swing.JTextField Jtext_field1;
-    private javax.swing.JTextField Jtext_field2;
+    private javax.swing.JTextField Jtext_cargo;
+    private javax.swing.JTextField Jtext_nome;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton_Entrar;
+    private javax.swing.JDesktopPane jDesktopPane;
     private javax.swing.JLabel jLabel_Foto;
     private javax.swing.JLabel jLabel_Logo;
     private javax.swing.JLabel jLabel_cargo;
-    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

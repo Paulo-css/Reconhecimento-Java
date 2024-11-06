@@ -11,8 +11,9 @@ package model.bean;
 public class Funcionario extends Pessoa {
     private String cargo;
     
-    public Funcionario(String nome,String bithday,String cpf,String foto,String cargo){
+    public Funcionario(String nome,int id,String bithday,String cpf,String foto,String cargo){
        this.name=nome;
+       this.id=id;
        this.birthday=bithday;
        this.foto=foto;
        this.cpf=cpf;

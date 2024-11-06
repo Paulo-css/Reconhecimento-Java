@@ -10,4 +10,32 @@ package model.bean;
  */
 public class Cliente extends Pessoa {
     
+    private String terreno;
+    private String Status;
+
+    public String getTerreno() {
+        return terreno;
+    }
+
+    public void setTerreno(String terreno) {
+        this.terreno = terreno;
+    }
+
+    public String getStatus() {
+        return Status;
+    }
+
+    public void setStatus(String Status) {
+        this.Status = Status;
+    }
+    public Cliente (){
+        
+    }
+    public Cliente (String nome, int id, String terreno, String Status ){
+        this.name= nome;
+        this.id=id;
+        this.terreno=terreno;
+        this.Status=Status;
+    }
+    
 }
